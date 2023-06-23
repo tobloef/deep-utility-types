@@ -47,9 +47,9 @@ type Todo = {
   completed: boolean;
   createdAt: number;
 }
- 
+
 type TodoPreview = DeepOmit<Todo, "description">;
- 
+
 const todo: TodoPreview = {
   title: "Clean room",
   completed: false,
@@ -61,7 +61,7 @@ A union of keys can be used to omit multiple properties:
 
 ```typescript
 type TodoInfo = Omit<Todo, "completed" | "createdAt">;
- 
+
 const todoInfo: TodoInfo = {
   title: "Pick up kids",
   description: "Kindergarten closes at 5pm",
@@ -89,12 +89,12 @@ type Example = {
 type Omitted = DeepOmit<Example, 'foo2.bar1' | 'foo2.bar2.baz1'>;
 
 const omitted: Omitted = {
-    foo1: 'foo1',
-    foo2: {
-        bar2: {
-        baz2: 'baz2',
-        },
+  foo1: 'foo1',
+  foo2: {
+    bar2: {
+      baz2: 'baz2',
     },
+  },
 };
 ```
 
