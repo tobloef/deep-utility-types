@@ -3,14 +3,14 @@
 import { IsUnion } from './is-union';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type DefaultIgnoredTypes = Function | number | string;
+export type DefaultIgnoredTypes = Function | number | string | Map<any, any> | Promise<any> | Date | RegExp;
 
 export type KeysAsDotNotation<
   T,
-  IgnoredTypes = DefaultIgnoredTypes,
+  IgnoredTypes = never,
   Key extends keyof T = keyof T
 > = (
-  T extends IgnoredTypes
+  T extends (IgnoredTypes | DefaultIgnoredTypes)
     ? never
     : T extends (infer ElementType)[]
       ? DistributeDotNotation<ElementType, IgnoredTypes>

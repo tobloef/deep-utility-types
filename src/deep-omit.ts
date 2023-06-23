@@ -1,11 +1,11 @@
-import { DefaultIgnoredTypes, KeysAsDotNotation } from './keys-as-dot-notation';
+import { KeysAsDotNotation } from './keys-as-dot-notation';
 import { IsUnion } from './is-union';
 import { UnionToTuple } from './union-to-tuple';
 
 export type DeepOmit<
   T,
   OmittedKeys extends KeysAsDotNotation<T, IgnoredTypes>,
-  IgnoredTypes = DefaultIgnoredTypes
+  IgnoredTypes = never
 > = (
   // For some reason we have to do the check twice
   (OmittedKeys extends never ? never : OmittedKeys) extends never
@@ -22,7 +22,7 @@ export type DeepOmit<
 type DeepOmitInArray<
   T extends (unknown[] | readonly unknown[]),
   OmittedKeys,
-  IgnoredTypes = DefaultIgnoredTypes
+  IgnoredTypes
 > = {
   [K in keyof T]: OmittedKeys extends KeysAsDotNotation<T[K], IgnoredTypes>
     ? DistributeDeepOmit<T[K], OmittedKeys, IgnoredTypes>
@@ -32,7 +32,7 @@ type DeepOmitInArray<
 type DeepOmitInObject<
   T,
   OmittedKeys,
-  IgnoredTypes = DefaultIgnoredTypes
+  IgnoredTypes
 > = {
   [ObjectKey in keyof T as NeverIfKeyOmitted<ObjectKey, OmittedKeys>]: (
     ObjectKey extends OmittedKeys
@@ -53,7 +53,7 @@ type DeepOmitInsideProp<
   ObjectKey,
   PropType,
   OmittedKeys,
-  IgnoredTypes = DefaultIgnoredTypes
+  IgnoredTypes
 > = (
   OmittedKeys extends `${infer Key}.${infer Rest}`
     ? ObjectKey extends Key
@@ -77,7 +77,7 @@ type DistributeDeepOmit<
 type DeepOmitWithArrayOfKeys<
   T,
   OmittedKeys,
-  IgnoredTypes = DefaultIgnoredTypes,
+  IgnoredTypes,
 > = (
   OmittedKeys extends []
     ? T
