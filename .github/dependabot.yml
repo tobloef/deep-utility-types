@@ -1,0 +1,22 @@
+version: 2
+
+registries:
+  github:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.LEGO_GITHUB_PACKAGE_REGISTRY_TOKEN }}
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    registries:
+      - lego-github
+    directory: /
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+      day: monday
