@@ -1,6 +1,6 @@
 {
   "name": "deep-omit-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility type for omitting nested properties from an object",
   "types": "./src/index.ts",
   "scripts": {
