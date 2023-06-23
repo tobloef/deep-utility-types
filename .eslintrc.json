@@ -1,37 +1,16 @@
 {
   "root": true,
-  "plugins": ["filename-rules"],
-  "extends": ["@lego/eslint-config", "@lego/eslint-config-prettier"],
-  "rules": {
-    "filename-rules/match": ["error", "/^(?:_|\\.)?([a-z0-9\\[\\]]+-)*[a-z0-9\\[\\]]+(?:\\..*)/"]
-  },
+  "extends": ["eslint:recommended"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
       "parserOptions": {
-        "project": ["tsconfig.build.json"]
-      },
-      "extends": ["@lego/eslint-config-typescript", "@lego/eslint-config-prettier"],
-      "rules": {
-        "curly": ["error", "multi", "consistent"],
-        "new-cap": "off",
-        "@typescript-eslint/no-confusing-void-expression": "off",
-        "node/no-unpublished-import": "off"
-      }
-    },
-    {
-      "files": ["*.spec.ts", "*.spec.tsx"],
-      "extends": ["@lego/eslint-config-jest"],
-      "parserOptions": {
-        "project": ["tsconfig.spec.json"]
+        "project": "./tsconfig.json"
       },
       "rules": {
-        "no-console": "off",
-        "jest/no-disabled-tests": "off",
-        "jest/no-mocks-import": "off",
-        "jest/prefer-called-with": "off",
-        "jest/max-expects": "off",
-        "curly": ["error", "multi", "consistent"]
+        "no-unused-vars": "off"
       }
     }
   ]

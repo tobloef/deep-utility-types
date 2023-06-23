@@ -14,10 +14,7 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          registry-url: https://npm.pkg.github.com
 
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.LEGO_GITHUB_PACKAGE_REGISTRY_TOKEN }}
 
       - run: npm run lint
