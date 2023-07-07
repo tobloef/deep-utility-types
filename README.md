@@ -1,6 +1,6 @@
 # `DeepOmit<Type, Keys>`
 
-Utility type for omitting nested properties from an object. Fully type-safe, has nice autocompletion, and works with arrays.
+Utility type for omitting nested properties from a type. Fully type-safe, has nice autocompletion, and works with arrays.
 
 ## 📦 Installation
 
