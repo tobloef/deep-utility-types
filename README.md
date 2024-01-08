@@ -60,7 +60,7 @@ const todo: TodoPreview = {
 A union of keys can be used to omit multiple properties:
 
 ```typescript
-type TodoInfo = Omit<Todo, "completed" | "createdAt">;
+type TodoInfo = DeepOmit<Todo, "completed" | "createdAt">;
 
 const todoInfo: TodoInfo = {
   title: "Pick up kids",
