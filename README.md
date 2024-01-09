@@ -1,4 +1,4 @@
-# `DeepOmit<Type, Keys>`
+# Deep Utility Types
 
 Utility types for operations on nested objects. Fully type-safe, has nice autocompletion, and works with arrays.
 
