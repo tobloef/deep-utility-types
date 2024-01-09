@@ -102,9 +102,9 @@ const pickedBad2: Picked = {
   },
 }
 
-type Required = DeepRequire<Test2, "foo2.bar2.baz2" | "foo2.bar1">;
+type Require = DeepRequire<Test2, "foo2.bar2.baz2" | "foo2.bar1">;
 
-const requiredGood1: Required = {
+const requiredGood1: Require = {
   foo2: {
     bar1: "bar1",
     bar2: [{
@@ -113,7 +113,7 @@ const requiredGood1: Required = {
   }
 }
 
-const requiredGood2: Required = {
+const requiredGood2: Require = {
   foo1: "bar1",
   foo2: {
     bar1: "bar1",
@@ -127,11 +127,11 @@ const requiredGood2: Required = {
 }
 
 // @ts-expect-error
-const requiredBad1: Required = {
+const requiredBad1: Require = {
   foo1: "bar1",
 }
 
-const requiredBad2: Required = {
+const requiredBad2: Require = {
   foo2: {
     bar1: "bar1",
     bar2: [
