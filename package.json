@@ -1,7 +1,7 @@
 {
-  "name": "deep-omit-ts",
+  "name": "deep-utility-types",
   "version": "1.0.1",
-  "description": "Utility type for omitting nested properties from an object",
+  "description": "Utility types for operations on nested objects",
   "types": "./src/index.ts",
   "scripts": {
     "lint": "eslint --fix .",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tobloef/deep-omit-ts.git"
+    "url": "git+https://github.com/tobloef/deep-utility-types.git"
   },
   "keywords": [
     "typescript",
@@ -24,9 +24,9 @@
   "author": "Tobias Løfgren <tobloef@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tobloef/deep-omit-ts/issues"
+    "url": "https://github.com/tobloef/deep-utility-types/issues"
   },
-  "homepage": "https://github.com/tobloef/deep-omit-ts#readme",
+  "homepage": "https://github.com/tobloef/deep-utility-types#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",

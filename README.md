@@ -1,19 +1,19 @@
 # `DeepOmit<Type, Keys>`
 
-Utility type for omitting nested properties from a type. Fully type-safe, has nice autocompletion, and works with arrays.
+Utility types for operations on nested objects. Fully type-safe, has nice autocompletion, and works with arrays.
 
 ## 📦 Installation
 
 #### NPM
-`npm install --save-dev deep-omit-ts`
+`npm install --save-dev deep-utility-types`
 
 #### Yarn
-`yarn add --dev deep-omit-ts`
+`yarn add --dev deep-utility-types`
 
 ## ⏱️ Quick Start
 
 ```typescript
-import { DeepOmit } from 'deep-omit-ts';
+import { DeepOmit } from 'deep-utility-types';
 
 type Example = {
   a: string;
@@ -30,6 +30,15 @@ type Omitted = DeepOmit<Example, 'a' | 'b.d.e'>;
 ```
 
 ## 📖 Documentation
+
+### Available Types
+
+* `DeepOmit<Type, Keys>`: Remove specified properties, keeping all others.
+* `DeepPick<Type, Keys>`: Keep specified properties, removing all others.
+* `DeepRequire<Type, Keys>`: Make specified properties non-optional, keeping all others as is.
+* `DeepOptional<Type, Keys>`: Make specified properties optional, keeping all others as is.
+
+> ⚠️ **Note:** The examples below use the `DeepOmit` type, but the same syntax applies to all other types.
 
 ### Basic Usage
 
@@ -73,7 +82,7 @@ const todoInfo: TodoInfo = {
 Unlike `Omit`, `DeepOmit` can omit nested properties:
 
 ```typescript
-import { DeepOmit } from 'deep-omit-ts';
+import { DeepOmit } from 'deep-utility-types';
 
 type Example = {
   foo1: string;
