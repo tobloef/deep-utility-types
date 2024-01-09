@@ -164,3 +164,4 @@ type Omitted = DeepOmit<Example, 'bar', SomeLargeClass>;
 - `Promise<any>`
 - `Date`
 - `RegExp`
+- `Boolean`

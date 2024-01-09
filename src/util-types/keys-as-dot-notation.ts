@@ -3,7 +3,7 @@
 import { IsUnion } from './is-union';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type DefaultIgnoredTypes = Function | number | string | Map<any, any> | Promise<any> | Date | RegExp;
+export type DefaultIgnoredTypes = Function | Number | String | Map<any, any> | Promise<any> | Date | RegExp | Boolean;
 
 export type KeysAsDotNotation<
   T,
