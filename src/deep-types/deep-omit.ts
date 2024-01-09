@@ -1,21 +1,23 @@
-import { KeysAsDotNotation } from './keys-as-dot-notation';
-import { IsUnion } from './is-union';
-import { UnionToTuple } from './union-to-tuple';
+import {KeysAsDotNotation} from '../util-types/keys-as-dot-notation';
+import {IsUnion} from '../util-types/is-union';
+import {UnionToTuple} from '../util-types/union-to-tuple';
+import {IsNever} from "../util-types/is-never";
+import {ArrayType, IsArray} from "../util-types/is-array";
+import {Assume} from "../util-types/assume";
 
 export type DeepOmit<
   T,
   OmittedKeys extends KeysAsDotNotation<T, IgnoredTypes>,
   IgnoredTypes = never
 > = (
-  // For some reason we have to do the check twice
-  (OmittedKeys extends never ? never : OmittedKeys) extends never
+  IsNever<OmittedKeys> extends true
     ? T
     : IsUnion<OmittedKeys> extends true
       ? UnionToTuple<OmittedKeys> extends Array<KeysAsDotNotation<T, IgnoredTypes>>
         ? DeepOmitWithArrayOfKeys<T, UnionToTuple<OmittedKeys>, IgnoredTypes>
         : never
-      : T extends (unknown[] | readonly unknown[])
-        ? DeepOmitInArray<T, OmittedKeys, IgnoredTypes>
+      : IsArray<T> extends true
+        ? DeepOmitInArray<Assume<T, ArrayType>, OmittedKeys, IgnoredTypes>
         : DeepOmitInObject<T, OmittedKeys, IgnoredTypes>
   );
 
@@ -35,9 +37,7 @@ type DeepOmitInObject<
   IgnoredTypes
 > = {
   [ObjectKey in keyof T as NeverIfKeyOmitted<ObjectKey, OmittedKeys>]: (
-    ObjectKey extends OmittedKeys
-      ? never
-      : DeepOmitInsideProp<ObjectKey, T[ObjectKey], OmittedKeys, IgnoredTypes>
+    DeepOmitInsideProp<T[ObjectKey], OmittedKeys, IgnoredTypes>
     )
 }
 
@@ -50,16 +50,13 @@ type NeverIfKeyOmitted<Key, OmittedKeys> = (
   );
 
 type DeepOmitInsideProp<
-  ObjectKey,
   PropType,
   OmittedKeys,
   IgnoredTypes
 > = (
-  OmittedKeys extends `${infer Key}.${infer Rest}`
-    ? ObjectKey extends Key
-      ? Rest extends KeysAsDotNotation<PropType, IgnoredTypes>
-        ? DeepOmit<PropType, Rest, IgnoredTypes>
-        : PropType
+  OmittedKeys extends `${string}.${infer Rest}`
+    ? Rest extends KeysAsDotNotation<PropType, IgnoredTypes>
+      ? DeepOmit<PropType, Rest, IgnoredTypes>
       : PropType
     : PropType
   )

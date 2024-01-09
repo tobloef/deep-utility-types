@@ -21,7 +21,7 @@ export type KeysAsDotNotation<
           : Key extends string
             ? (
               Key |
-              `${Key}.${KeysAsDotNotation<T[Key], IgnoredTypes>}`
+              `${Key}.${KeysAsDotNotation<Exclude<T[Key], undefined>, IgnoredTypes>}`
               )
             : never
   );
