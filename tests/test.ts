@@ -1,7 +1,4 @@
-import {DeepOmit, DeepPick} from "./index";
-import {DeepRequire} from "./deep-types/deep-require";
-import {DeepOptional} from "./deep-types/deep-optional";
-import {KeysAsDotNotation} from "./util-types/keys-as-dot-notation";
+import {DeepOmit, DeepPick, DeepRequire, DeepOptional} from "../src";
 
 type Test1 = {
   foo1: string;
