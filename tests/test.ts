@@ -62,6 +62,24 @@ const omittedBad2: Omitted = {
   },
 }
 
+const handlesOptionalProps: DeepOmit<{
+  a?: {
+    a_a: number;
+    a_b: number;
+  },
+  b: {
+    b_a?: number;
+    b_b: number;
+  },
+}, "a.a_a" | "b.b_a"> = {
+  a: {
+    a_b: 2,
+  },
+  b: {
+    b_b: 2,
+  },
+}
+
 type Picked = DeepPick<Test1, "foo2.bar1" | "foo2.bar2.baz2">;
 
 const pickedGood: Picked = {
