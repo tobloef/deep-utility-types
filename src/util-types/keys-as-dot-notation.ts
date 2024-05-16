@@ -10,14 +10,14 @@ export type KeysAsDotNotation<
   IgnoredTypes = never,
   Key extends keyof T = keyof T
 > = (
-  T extends (IgnoredTypes | DefaultIgnoredTypes)
-    ? never
-    : T extends (infer ElementType)[]
-      ? DistributeDotNotation<ElementType, IgnoredTypes>
-      : T extends readonly (infer ElementType)[]
+  IsUnion<T> extends true
+    ? DistributeDotNotation<T, IgnoredTypes>
+    : T extends (IgnoredTypes | DefaultIgnoredTypes)
+      ? never
+      : T extends (infer ElementType)[]
         ? DistributeDotNotation<ElementType, IgnoredTypes>
-        : IsUnion<T> extends true
-          ? DistributeDotNotation<T, IgnoredTypes>
+        : T extends readonly (infer ElementType)[]
+          ? DistributeDotNotation<ElementType, IgnoredTypes>
           : Key extends string
             ? (
               Key |
